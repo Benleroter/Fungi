@@ -1,0 +1,25 @@
+{% extends "fungi/base.html" %}
+{% load crispy_forms_tags %}
+{% block search2 %}
+<h1>Search fields </h1>
+
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+			    <h4>
+				<form action= "" method="POST">
+					{% csrf_token %}
+					{{form|crispy}}
+					<button class="btn btn-outline-info" type="submit">Search</button>
+					<button type="button" class="btn btn-outline-success">
+			    <a href="{% url 'usersettings:edit-search-fields' user.showsearchfields.id %}">Select fields for searches</a>
+			  </button>
+					
+				</form>
+				</h4>
+
+
+          </div>
+        </div>
+      </article>
+{% endblock search2 %}

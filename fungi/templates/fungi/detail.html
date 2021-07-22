@@ -1,0 +1,654 @@
+{% extends "fungi/base.html" %}
+{% include 'test.html' %}
+  {% block header %}
+      <h1 style="color:white;">
+        {% if user.show.ShowLatinNames %}
+                {{object.CommonName}}, <em>{{object.LatinName}}</em>, id: {{object.id}}
+        {% else %}
+                {{object.CommonName}}
+         {% endif %}
+      </h1>
+  {% endblock header %}
+
+  {% block Netlinks%}
+      <h4>
+       <div class="media content-subsection2" >Links:</div>
+         {% for i in NetLinks %}
+            {% if i.Website != 'NoData' %}
+               <div class="media content-section" >
+                 <article><a href={{i.Websiteurl}} target="_blank">{{i.Website}}</a></article>
+               </div>
+            {% endif %}
+         {% endfor %}
+     </h4>
+
+  {% endblock Netlinks%}
+
+  {% block picture%}
+      <img src= "/media/{{Picture.image}}" fungi-img alt="/default.jpg"/>
+  {% endblock picture %}
+
+	{% block content %}
+  {% if DataToDisplay %}
+      <h5>
+			<article class="media content-subsection3">
+        <div class="media-body">
+          <div class="article-metadata">
+              <a class="fungi-title" href="{% url 'FungiDetail-Page' object.id %}"></a>
+                {% if ShowHabitatFlag == 'Yes' %}
+                  <article class="media content-section">
+                    <article>
+                      <div class="media content-subsection2" >
+                        <article><h3>Habitat: </h3></article>                   
+                      </div>
+                      {% if Associations  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Associated Trees: <a>{{ Associations }}</a></article>
+                        </div>
+                      {% endif %}
+                      {% if Ph  != "NoData" and Ph != "Other"%}
+                        <div class="media content-section" >
+                          <article>Acidity of underlying geology: <a>{{ Ph }}</a></article>
+                        </div>
+                      {% endif %}
+                      {% if Soil  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Soil: <a>{{ Soil }}</a></article>
+                        </div>
+                      {% endif %}
+                      {% if HabitatComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Comments: <a>{{ HabitatComments }}</a></article>
+                        </div>
+                      {% endif %}  
+                    </article>                        
+                  </article>
+                {% endif %} 
+
+                {% if ShowCapFlag == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Cap: </h3></article>                   
+                        </div>
+                        {% if CapColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Colour: <a>{{ CapColour }}</a></article>                   
+                        </div>
+                        {% endif %}
+                        {% if CapShapeDescription  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Shape: <a>{{ CapShapeDescription }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if CapRim != "NoData" and CapRim != "Other"%}
+                        <div class="media content-section" >
+                          <article>Rim: <a>{{ CapRim }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if CapRimDescription  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Rim: <a>{{ CapRimDescription }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if CapTexture  != "NoData" and CapTexture != "Various"%}
+                        <div class="media content-section" >
+                          <article>Texture: <a>{{ CapTexture }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if CapTextureDescription  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Texture: <a>{{ CapTextureDescription }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if CapBruiseColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Bruise colour: <a>{{ CapBruiseColour }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if CapCutColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Cut colour: <a>{{ CapCutColour }}</a></article>
+                        </div>
+                        {% endif %} 
+                        {% if CapWidthMin  != 0.00 and CapWidthMax  != 0.00 %}
+                        <div class="media content-section" >
+                          {% if CapWidthMin == 'up to' %}
+                            <article>Width: <a>{{CapWidthMin}}</a>
+                                                      <a> {{CapWidthMax}}cm</a>
+                          </article>
+                          {% else %}
+                            <article>Width: <a>{{CapWidthMin}}cm</a>
+                                                      <a>- {{CapWidthMax}}cm</a>
+                            </article>
+                          {% endif %}
+                        </div>
+                        {% endif %}
+                        {% if CapComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Comments: <a>{{ CapComments }}</a></article>
+                        </div> 
+                        {% endif %}
+                      </article>                        
+                  </article>
+                {% endif %}  
+
+                {% if ShowStipeFlag == 'Yes' %}
+                  <article class="media content-section">
+                    <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Stipe/stem: </h3></article>                   
+                        </div>
+
+                        {% if StipeColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Colour: <a>{{ StipeColour }}</a></article>                   
+                        </div>
+                        {% endif %}
+                        {% if StipeTexture  != "NoData" and StipeTexture != "Other"%}
+                        <div class="media content-section" >
+                          <article>Texture: <a>{{ StipeTexture }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if TextureDescription  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Texture Description: <a>{{ TextureDescription }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if StipeBruiseColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Bruise Colour: <a>{{ StipeBruiseColour }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if StipeCutColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Cut Colour: <a>{{ StipeCutColour }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if ShapeDescription  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Shape: <a>{{ ShapeDescription }}</a></article>
+                        </div>
+                        {% endif %}
+                        {% if StipeRing  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Stipe Ring: <a>{{ StipeRing }}</a></article>
+                        </div>
+                        {% endif %}   
+                        {% if RingDescription  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Ring Description: <a>{{ RingDescription }}</a></article>
+                        </div>
+                        {% endif %}                        
+                        {% if Reticulation  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Reticulation Present: <a>{{ Reticulation }}</a></article>
+                        </div>
+                        {% endif %}  
+                        {% if ReticulationColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Reticulation Colour: <a>{{ ReticulationColour }}</a></article>
+                        </div>
+                        {% endif %}   
+                        {% if ReticulationDescription  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Reticulation Description: <a>{{ ReticulationDescription }}</a></article>
+                        </div>
+                        {% endif %} 
+                        {% if Base  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Base: <a>{{ Base }}</a></article>
+                        </div>
+                        {% endif %} 
+                        {% if BaseDescription  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Base Description: <a>{{ BaseDescription }}</a></article>
+                        </div>
+                        {% endif %}                          
+                        {% if StipeThicknessMin  != 0.00 and StipeThicknessMax  != 0.00 %}
+                        <div class="media content-section" >
+                          {% if StipeThicknessMin == 'up to'  %}
+                          <article>Thickness: <a>{{StipeThicknessMin}}</a>
+                                                            <a>- {{StipeThicknessMax}}cm</a>
+                          </article>
+                          {% else %}
+                          <article>Thickness: <a>{{StipeThicknessMin}}cm</a>
+                                                            <a>- {{StipeThicknessMax}}cm</a>
+                          </article>
+                          {% endif %}
+                        </div>
+                        {% endif %}
+                        {% if StipeLengthMin  != 0.00 and StipeLengthMax  != 0.00 %}
+                        <div class="media content-section" >
+                            {% if StipeLengthMin == 'up to'  %}
+                            <article>Length: <a>{{StipeLengthMin}}</a>
+                                                         <a>- {{StipeLengthMax}}cm</a>
+                            </article>
+                             {% else %}
+                            <article>Length: <a>{{StipeLengthMin}}cm</a>
+                                                         <a>- {{StipeLengthMax}}cm</a>
+                            </article>
+                            {% endif %}
+                        </div>
+                        {% endif %}                          
+                        {% if StipeComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Comments: <a>{{ StipeComments }}</a></article>
+                        </div> 
+                        {% endif %}
+                    </article>                        
+                  </article>
+                {% endif %}
+
+                {% if ShowCuisineFlag == 'Yes' %}
+                  <article class="media content-section">
+                    <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Cuisine & Edibilty: </h3>
+                            {% if CulinaryRating == "deadly" %}
+                              <img src= "/media/images/skull-and-crossbones_2620.jpg" fungi-img alt="/default.jpg"/>
+                             {% endif %}
+                          </article>                   
+                            
+                        </div>
+
+                        {% if CulinaryRating  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Culinary Rating: <a>{{ CulinaryRating }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                        {% if Odour  != "NoData" %}
+                        <div class="media content-section" >
+                            <article>Odour: <a>{{ Odour }}</a></article>
+                        </div>
+                        {% endif %}       
+                        {% if Taste  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Taste: <a>{{ Taste }}</a></article>
+                        </div>
+                        {% endif %}                   
+                        {% if PoisonType  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Poison Type: <a>{{ PoisonType }}</a></article>
+                        </div>
+                        {% endif %}     
+                        {% if CuisineComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Comments: <a>{{ CuisineComments }}</a></article>
+                        </div>
+                        {% endif %}  
+                      </article>                        
+                  </article>
+                {% endif %}  
+
+                {% if ShowFleshFlag == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Flesh: </h3></article>
+                        </div>
+
+                        {% if FleshCapColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Cap Colour: <a>{{ FleshCapColour }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                        {% if FleshCapBruiseColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Cap Bruise Colour: <a>{{ FleshCapBruiseColour }}</a></article>
+                        </div>
+                        {% endif %}                        
+
+                        {% if FleshCapCutColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Cap Cut Colour: <a>{{ FleshCapCutColour }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                        {% if FleshStipeColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Stipe Colour: <a>{{ FleshStipeColour }}</a></article>
+                        </div>
+                        {% endif %} 
+
+
+                        {% if FleshStipeBruiseColour  != "NoData"  %}
+                        <div class="media content-section" >
+                          <article>Stipe Bruise Colour: <a>{{ FleshStipeBruiseColour }}</a></article>
+                        </div>
+                        {% endif %}   
+
+                        {% if FleshStipeCutColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Stipe Cut colour: <a>{{ FleshStipeCutColour }}</a></article>
+                        </div>
+                        {% endif %}                      
+
+                        {% if FleshComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Comments: <a>{{ FleshComments }}</a></article>
+                        </div>
+                        {% endif %}  
+                      </article>                        
+                  </article>
+                {% endif %}
+
+                {% if ShowSimilarFungiFlag == 'Yes' %}
+                  <article class="media content-section">
+                    <article>
+                      <div class="media content-subsection2" >
+                        <article><h3>Similar Fungi: </h3></article>                   
+                      </div>
+                      {% for i in SimilarFungiNames %}
+                        {% if i.SimilarFungiName != "NoData"%}
+                          <div class="media content-section" >
+                            <article>
+                              <a  href="{% url 'FungiDetail-Page'  i.SimilarFungiID %}" >{{ i.SimilarFungiName}}</a>
+                            </article>
+                          </div>
+                        {% endif%}
+                        {% if i.SimilarFungiComments != "NoData" %}
+                          <div class="media content-section" >
+                            <article>
+                              <a >{{ i.SimilarFungiComments}}</a>
+                            </article>
+                          </div> 
+                        {% endif %}  
+                      {% endfor %}
+                    </article>                        
+                  </article>
+                {% endif %}                
+
+                {% if ShowCommonNameFlag == 'Yes' %}
+                  <article class="media content-section">
+                    <article>
+                      <div class="media content-subsection2" >
+                        <article><h3>Other Common Names: </h3></article>                   
+                      </div>
+                      {% for i in OtherCommonNames %}
+                        {% if i.AltCommonName != "NoData"%}
+                          <div class="media content-section" >
+                            <article><a>{{ i.AltCommonName}}</a></article>
+                          </div>
+                        {% endif %}  
+                      {% endfor %}
+                    </article>                        
+                  </article>
+                {% endif %}
+
+
+                {% if ShowLatinNameFlag == 'Yes' %}
+                  <article class="media content-section">
+                    <article>
+                      <div class="media content-subsection2" >
+                        <article><h3>Other Latin Names: </h3></article>                   
+                      </div>
+                      {% for i in OtherLatinNames %}
+                        {% if i.AltLatinName != "NoData"%}
+                          <div class="media content-section" >
+                            <article><a>{{ i.AltLatinName}}</a></article>
+                          </div>
+                        {% endif %}  
+                      {% endfor %}
+                    </article>                        
+                  </article>
+                {% endif %} 
+
+                {% if ShowSporesFlag == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Spores: </h3></article>
+                        </div>               
+
+                        {% if SporesColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>{{ SporesColour }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if SporesComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Comments: {{ SporesComments }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                    </article>                        
+                  </article>
+                {% endif %}  
+
+                {% if ShowSeasonFlag == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Fruiting Season: </h3></article>                   
+                        </div>
+                        {% if FruitingSeason  != "NoData" %}
+                        <div class="media content-section" >
+                          <article><a>{{ FruitingSeason }}</a></article>
+                        </div>
+                        {% endif %} 
+                        {% if SeasonComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Season Comments: <a>{{ SeasonComments }}</a></article>
+                        </div>
+                        {% endif %} 
+ 
+                      </article>                        
+                  </article>  
+                {% endif %}
+                
+                {% if ShowStatusFlag == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Status: </h3></article>                   
+                        </div>
+
+                        {% if StatusData  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Status: <a>{{ StatusData }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                        {% if WhereFound  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Where found: <a>{{ WhereFound }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                        {% if UKOccurences  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>UK Occurences: <a>{{ UKOccurences }}, (source NBN)</a></article>
+                        </div>
+
+                        {% endif %}
+
+
+                        {% if RecordedInUK  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Recorded In UK: <a>{{ RecordedInUK }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if StatusComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>StatusComments: <a>{{ StatusComments }}</a></article>
+                        </div>
+                        {% endif %} 
+                      </article>                        
+                  </article>
+                {% endif %}
+
+
+
+                {% if ShowPoresAndTubesFlag == 'Yes' and PoresPresent == 'yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Pores and Tubes: </h3></article>                   
+                        </div>
+                        {% if PoreColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Pore Colour: <a>{{ PoreColour }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                        {% if PoreShape  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Pore Shape: <a>{{ PoreShape }}</a></article>
+                        </div>
+                        {% endif %}    
+
+                        {% if PoreBruiseColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Pore Bruise Colour: <a>{{ PoreBruiseColour }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if TubeColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Tube Colour: <a>{{ TubeColour }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                        {% if TubeShape  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Tube Shape:<a>{{ TubeShape }}</a></article>
+                        </div>
+                        {% endif %} 
+
+                        {% if TubeBruiseColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Tube Bruise Colour <a>{{ TubeBruiseColour }}</a></article>
+                        </div>
+                        {% endif %}    
+
+                        {% if PoreMilk  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Milk: <a>{{ PoreMilk }}</a></article>
+                        </div>
+                        {% endif %}      
+                        
+                        {% if PoreComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Comments: <a>{{ PoreComments }}</a></article>
+                        </div>
+                        {% endif %}                    
+
+                      </article>                        
+                  </article>
+                {% endif %}
+
+                {% if ShowGillsFlag == 'Yes' and GillsPresent == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Gills: </h3></article>                   
+                        </div>
+
+                        {% if GillsPresent  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Gills Present: <a>{{ GillsPresent }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if GillsBruiseColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Bruise Colour: <a>{{ GillsBruiseColour }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if GillsCutColour  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Cut Colour: <a>{{ GillsCutColour }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if GillsAttachment  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Attachment: <a>{{ GillsAttachment }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if GillsMilk  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>Milk: <a>{{ GillsMilk }}</a></article>
+                        </div>
+                        {% endif %}
+
+                        {% if GillsComments  != "no comments" %}
+                        <div class="media content-section" >
+                          <article>Comments: <a>{{ GillsComments }}</a></article>
+                        </div>
+                        {% endif %}                        
+                                          
+                      </article>                        
+                  </article>
+                {% endif %}
+
+                {% if FungiCommentsFlag == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>General comments: </h3></article>
+                        </div>               
+                        {% if FungiComments  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>{{ FungiComments }}</a></article>
+                        </div>
+                        {% endif %}
+                    </article>                        
+                  </article>
+                {% endif %}
+
+                {% if ShowClassificationFlag == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Classification: </h3></article>                   
+                        </div>
+
+                        {% if Kingdom  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>
+                            <p>Kingdom: <a>{{ Kingdom }}</a></p>
+                            <p>---Phyum: <a>{{ Phyum }}</a></p>
+                            <p>------Sub Phyum: <a>{{ SubPhyum }}</a></p>
+                            <p>---------Class: <a>{{ Class }}</a></p>
+                            <p>------------Sub Class: <a>{{ SubClass }}</a></p>
+                            <p>---------------Order: <a>{{ Order }}</a></p>
+                            <p>------------------Family: <a>{{ Family }}</a></p>
+                            <p>---------------------Genus: <a>{{ Genus }}</a></p>
+                            <p>Classification source : <a> {{ Source }}</a></p>
+                          </article>
+                        </div>
+                        {% endif %}                         
+                      </article>                        
+                  </article>
+                {% endif %}
+
+
+
+          </div>
+        </div>
+      </article> 
+		
+  </h5>
+  {% else %}
+      <article class="media content-section">
+          <article>
+            <div class="media content-subsection2" >
+              <article><h3>No data yet entered for: {{object.CommonName}} </h3></article>
+            </div>               
+        </article> 
+  {% endif %}
+	{% endblock content %}
+
+
+
+			

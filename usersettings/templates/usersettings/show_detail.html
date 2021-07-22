@@ -1,0 +1,36 @@
+{% extends "fungi/base.html" %}
+  {% block content %}
+    <h2>Filters for: {{ object.user}}, ID= {{object.id}}</h2>>
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <h4>
+                <p class="article-content"></p>
+                  <div>
+                  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'usersettings:edit-show-filter' show.id %}">Update2</a>
+                  </div>
+                  <div>
+                  <p> All: {{ object.ShowAll }}</p>
+                  <p> Fungi: {{ object.ShowFungi }}</p>
+                  <p> Other Common Names: {{ object.ShowOtherCommonNames }}</p>
+                  <p> Other Latin Names: {{ object.ShowOtherLatinNames}}</p>
+                  <p> Classification: {{ object.ShowClassification }}</p>
+                  <p> Pores and Tubes: {{ object.ShowPoresAndTubes}}</p>
+                  <p> Gills: {{ object.ShowGills}}</p>
+                  <p> Spores: {{ object.ShowSpores }}</p>
+                  <p> Flesh: {{ object.ShowFlesh }}</p>
+                  <p> Habitat: {{ object.ShowHabitat }}</p>
+                  <p> Cuisine: {{ object.ShowCuisine}}</p>
+                  <p> Cap: {{ object.ShowCap }}</p>
+                  <p> Stipe: {{ object.ShowStipe}}</p>
+                  <p> Seasons: {{ object.ShowSeasons }}</p>
+                  <p> Similar Fungi: {{ object.ShowSimilarFungi }}</p>
+                  <p> Status: {{ object.ShowStatus }}</p>
+                  <p> Fungi Comments: {{ object.ShowFungiComments}}</p>
+                  <p> Latin Name {{ object.ShowLatinNames}}</p>
+            </h4>
+          </div>
+        </div>
+      </article>                  
+{% endblock content %}
+  

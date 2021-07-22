@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'fungi/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fungi/main.css' %}">
+
+  	{% if title %}
+          <title>Fungi Finder - {{ title }}</title>
+      {% else %}
+          <title>Fungi</title>
+      {% endif %}
+</head>
+<style>
+body {background-color:white; padding-top:100px;}>
+</style>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md  navbar-custom fixed-top">
+          <!-- Navbar Left Side -->
+        <div class="topnav">
+            <h1 style="color:white;"> {{user.username}} </h1> 
+        </div>   
+      <!--<nav class="navbar navbar-expand-md navbar-custom  fixed-top">-->
+        <div class="container">
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+            <div  class="text-white-90">
+                            {% block header %}{% endblock header %}
+            </div>
+              <!--<a class="navbar-brand navbar-inverse mr-9" href="{% url 'AllFungi-HomePage' %}">Fungi LLLLLL</a>-->
+
+            </div>
+  
+
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+
+              {% if user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin</a>                    
+                {% endif %}
+                {% if user.username == 'GuestUser' %}
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                {% endif %}
+
+                
+                <a class="nav-item nav-link" href="{% url 'AllFungi-HomePage' %}">Home</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-item nav-link" href="{% url 'AllFungiList' %}">Fungi List</a>
+                <a class="nav-item nav-link" href="{% url 'search-fungi' %}">Search</a>
+                <a class="nav-item nav-link" href="{% url 'AllFungi-AboutPage' %}">About</a>
+                <a class="nav-item nav-link" href="{% url 'usersettings:Filter-HomePage' %}"><img src="/media/images/settings-778.png"></a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'AllFungi-HomePage' %}">Home</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'AllFungiList' %}">Fungi List</a>
+                <a class="nav-item nav-link" href="{% url 'AllFungi-AboutPage' %}">About</a>
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              {% endif %}
+            </div>            
+
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">    
+      <div class="row">
+        <div class="col-md-8">
+            {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}"></div>
+                {% endfor %}
+            {% endif %}
+            
+          {% block content %}{% endblock content %}
+          {% block filters %}{% endblock filters %}
+          {% block filterSettingsBlock %}{% endblock filterSettingsBlock %}
+          {% block search_results %}{% endblock search_results %}
+          {% block search2 %}{% endblock search2 %}
+
+        </div>     
+
+        <div class="col-md-4">
+          <div class="content-section-nb">           
+              {% block Netlinks%}
+              {% endblock Netlinks%} 
+              {% block search %}
+              {% endblock search%}
+          </div>
+          <div>
+              {% block picture %}
+              {% endblock picture%}
+           </div> 
+        </div>
+
+       </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>							

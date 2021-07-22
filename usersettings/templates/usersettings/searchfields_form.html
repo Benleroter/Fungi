@@ -1,0 +1,256 @@
+{% extends "fungi/base.html" %}
+{% load crispy_forms_tags %}
+{% crispy EditFilter EditFilter.helper %}
+{% block content %}
+    
+    <div class="content-section">
+        
+        {% if user.username != 'GuestUser' %}
+            <legend class="border-bottom mb-4"><h2>Search fields </h2></legend>
+         {% else%}
+            <legend class="border-bottom mb-4"><h2>Search fields<h4><em> Default vales for GuestUser</em></h4></h2></legend>
+        {% endif%}
+        <form method="POST">
+            {% csrf_token %}
+          <fieldset class="form-group">
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.CommonName|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.LatinName|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.OtherCommonNames|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.OtherLatinNames|as_crispy_field }}
+                        </div>                         
+            </div>
+            <h4><p>Season</p></h4>  
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.MonthFound|as_crispy_field}}
+                        </div>
+             </div>            
+            <h4><p>Habitat</p></h4>  
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.HabitatAssociations|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.HabitatGrowingMedium|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.HabitatPh|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.HabitatSoil|as_crispy_field }}
+                        </div>                        
+            </div>
+            <h4><p>Cap</p></h4>  
+             <div class="form-row">
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.CapTexture|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.CapBruiseColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.CapCutColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.CapWidth|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.CapColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.CapShape|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.CapRim|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.FleshCapColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.FleshCapBruiseColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.FleshCapCutColour|as_crispy_field}}
+                        </div>
+
+            </div>
+            <h4><p>Stipe (stem)</p></h4>
+            <div class="form-row">
+
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StipeColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StipeBruiseColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StipeCutColour|as_crispy_field}}
+                        </div>
+                         <div class="form-group col-md-3  mb-0">
+                            {{ form.StipeLength|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StipeThickness|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.StipeShape|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StipeReticulationPresent|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StipeReticulationColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StipeBase|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.StipeTexture|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StipeRing|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.FleshStipeColour|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.FleshStipeBruiseColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.FleshStipeCutColour|as_crispy_field}}
+                        </div>
+            </div>
+            <h4><p>Pores and Tubes</p></h4>
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.PoresPresent|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.PoreColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.PoreShape|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.PoreBruiseColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.TubeColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.TubeShape|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.TubeBruiseColour|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.PoreMilk|as_crispy_field}}
+                        </div>
+            </div>
+            <h4><p>Gills</p></h4>            
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.GillsPresent|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.GillsColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.GillsBruiseColour|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.GillsCutColour|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.GillsAttachment|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.GillsArrangement|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.GillsMilk|as_crispy_field }}
+                        </div>
+            </div>
+            <h4><p>Spores</p></h4>  
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.SporeColour|as_crispy_field}}
+                        </div>
+            </div>
+            <h4><p>Classification</p></h4>              
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.Kingdom|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.Phyum|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.SubPhyum|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.Class|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.SubClass|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.Order|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.Family|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.Genus|as_crispy_field}}
+                        </div>
+            </div>
+
+            <h4><p>Cuisine</p></h4>    
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.PoisonType|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.CulinaryRating|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3  mb-0">
+                            {{ form.Odour|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.Taste|as_crispy_field}}
+                        </div>
+            </div>
+            <h4><p>Status</p></h4>    
+            <div class="form-row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StatusStatusData|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.StatusWhereFound|as_crispy_field}}
+            </div>
+            <div class="form-row">
+
+            </div>            
+          </fieldset>
+
+          {% if user.username != 'GuestUser' %}
+            <div class="form-group"> 
+                <button class="btn btn-warning" type="submit"><span style="font-size:30px;">Save settings</span></button>
+            </div>
+          {% else %}
+            <div class="form-group"> 
+                <button class="btn btn-warning" disabled  type="button"><span style="font-size:30px;">Save settings</span></button>
+                <em>To edit and save personal settings please register</em>
+            </div>
+          {% endif %}
+      </form>
+    </div>
+{% endblock content %} 

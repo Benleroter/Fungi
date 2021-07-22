@@ -1,0 +1,28 @@
+{% extends "fungi/base.html" %}
+{% block content %}
+	<h1 style="color:black;">
+		<div class="article-metadata">
+		<p>No Search Results</p>
+		<h4 style="color:black;">
+			{% if  SearchTermsCount != 0%}
+						This combination of search values:
+						{% for st, value in SearchTerms.items %}
+							<p></p> 
+							{% if value != 'initial' %}
+								{% if not value %}
+									<p>{{st}}: no search value entered </p>
+								{% else%}
+								    <p>{{st}}: {{value}} </p>
+								{% endif %}
+								
+							{% endif %}
+						{% endfor %} 
+						produces zero matches
+			{% else %}
+			  No search values entered!
+			{% endif %}
+		</h4>
+	</div>
+	</h1>
+{% endblock content %}
+								

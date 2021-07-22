@@ -1,0 +1,22 @@
+{% extends "fungi/base.html" %}
+{% load crispy_forms_tags %}
+	{% block Name%}
+	<a> 
+	<h1>{{object.Fungi.CommonName}}- attributes filter</h1>
+	</a>
+	{% endblock Name%}
+  	
+  	{% block filters%}
+  		<div class="content-section">
+	    	<form method="POST">
+	    		{% csrf_token %}
+	    		<fieldset>
+	    			{{ form|crispy}}
+	    		</fieldset>     
+	    		<div class="form-group">
+	    			<button class="btn btn-outline-info" type="submit">POSTppp</button>
+	    		</div>
+	    	</form>
+	    </div>
+
+	{% endblock filters %}

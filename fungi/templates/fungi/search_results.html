@@ -1,0 +1,38 @@
+{% extends "fungi/base.html" %}
+  {% block search_results %}
+    <h1>
+      {% if resultscount == 1 %} 
+        {{ resultscount}} result
+      {% else %}
+        {{resultscount}} results
+       {% endif %}
+     </h1>
+
+    {% for fungi in search_fungi_results_A %}
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <h2>
+              <a class="article-title" href="{% url 'FungiDetail-Page' fungi.0.id %}" >
+                  <p class="article-content"> <h2>{{fungi.0}}</h2></p>
+
+                  <p class="article-content"> <h2>{{fungi.66}}, <em>{{fungi.67}}</em></h2></p>
+                </a>
+            </h2>
+          </div>
+        </div>
+      </article>                  
+    {% endfor %}
+
+  </h1>
+
+
+
+
+
+
+{% endblock search_results %}
+
+
+
+			

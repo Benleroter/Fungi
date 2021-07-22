@@ -1,0 +1,24 @@
+                {% if ShowClassificationFlag == 'Yes' %}
+                  <article class="media content-section">
+                      <article>
+                        <div class="media content-subsection2" >
+                          <article><h3>Classification: </h3></article>                   
+                        </div>
+
+                        {% if Kingdom  != "NoData" %}
+                        <div class="media content-section" >
+                          <article>
+                            <p>Kingdom: <a>{{ Kingdom }}</a></p>
+                            <p>---Phyum: <a>{{ Phyum }}</a></p>
+                            <p>------Sub Phyum: <a>{{ SubPhyum }}</a></p>
+                            <p>---------Class: <a>{{ Class }}</a></p>
+                            <p>------------Sub Class: <a>{{ SubClass }}</a></p>
+                            <p>---------------Order: <a>{{ Order }}</a></p>
+                            <p>------------------Family: <a>{{ Family }}</a></p>
+                            <p>---------------------Genus: <a>{{ Genus }}</a></p>
+                          </article>
+                        </div>
+                        {% endif %}                         
+                      </article>                        
+                  </article>
+                {% endif %}
